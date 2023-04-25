@@ -63,11 +63,11 @@ npm run build
 
 1. Open the web application in your browser at http://localhost:5173.
 2. Enter your Business Details such as:
-   - Name
+   - Business Name:
    - Year established
    - Loan Amount
    - Acconting Provider 
-3. Review and click "Submit" to apply loan.
+3. Review balance sheet and click "Submit" to apply loan.
 4. Final Outcome will show the result of your loan application.
 
 ## Docker and Docker Compose

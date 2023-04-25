@@ -19,6 +19,10 @@ const App = () => {
     }
   };
 
+  const resetLoanResult = () => {
+    setLoanResult(null);
+  };
+
   const submitApplication = async (formData) => {
     try {
       const response = await fetch(`${apiBaseUrl}/loan`, {
@@ -43,11 +47,13 @@ const App = () => {
           <LoanForm
             onFetchBalanceSheet={fetchBalanceSheet}
             onSubmitApplication={submitApplication}
+            onAccountingProviderChange={resetLoanResult} // Pass the new function as a prop
           />
+          {loanResult && <LoanResult result={loanResult} />}
           {balanceSheet.length > 0 && (
             <BalanceSheet balanceSheet={balanceSheet} />
           )}
-          {loanResult && <LoanResult result={loanResult} />}
+          
         </div>
       </div>
     </div>

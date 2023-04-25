@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const LoanForm = ({ onFetchBalanceSheet, onSubmitApplication }) => {
+const LoanForm = ({ onFetchBalanceSheet, onSubmitApplication, onAccountingProviderChange }) => {
   const [formData, setFormData] = useState({
     businessDetails: {
       name: "",
       yearEstablished: "",
     },
-    loanAmount: 0,
+    loanAmount: "",
     accountingProvider: "",
   });
 
@@ -30,6 +30,7 @@ const LoanForm = ({ onFetchBalanceSheet, onSubmitApplication }) => {
     } else {
       setFormData({ ...formData, [name]: value });
       setAccountingProvider(value);
+      onAccountingProviderChange(); // Call the new function when the accounting provider is changed
     }
   };
 
