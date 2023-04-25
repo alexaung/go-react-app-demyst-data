@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  backend:
+    image: <your-dockerhub-username>/go-react-app-backend:latest
+    build: ./backend
+    ports:
+      - "8080:8080"
+    restart: always
+
+  frontend:
+    image: <your-dockerhub-username>/go-react-app-frontend:latest
+    build: ./frontend
+    ports:
+      - "80:80"
+    restart: always
