@@ -19,6 +19,10 @@ The goal of the project is to build a simple business loan application system.
 
 The backend is a Go API server built with Gin Web Framework.
 
+### Note on accounting data
+
+The current implementation of the accounting data (MYOB and Xero) in `backend/api/accounting/myob.go` and `backend/api/accounting/xero.go` uses simulated hard-coded data for balance sheets. In a real-world scenario, you would make API calls to fetch actual data from the respective accounting provider. To test the application with different data, feel free to modify the hard-coded data in these files.
+
 ### Setup
 
 1. Install Go: [https://golang.org/doc/install](https://golang.org/doc/install)

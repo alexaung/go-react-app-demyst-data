@@ -18,8 +18,10 @@ func TestHandleLoanApplication(t *testing.T) {
 	accountingServices := map[string]*services.AccountingService{
 		"Xero": services.NewAccountingService(accounting.NewXero()),
 	}
+
 	decisionEngine := decisionEngine.NewDecisionEngine()
-	loanController := controllers.NewLoanController(accountingServices, decisionEngine)
+	decisionEngineService := services.NewDecisionEngineService(decisionEngine)
+	loanController := controllers.NewLoanController(accountingServices, decisionEngineService)
 
 	router := gin.Default()
 	router.POST("/loan", loanController.HandleLoanApplication)

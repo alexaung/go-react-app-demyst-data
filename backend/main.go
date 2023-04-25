@@ -27,9 +27,10 @@ func main() {
 	}
 
 	decisionEngine := decisionEngine.NewDecisionEngine()
+	decisionEngineService := services.NewDecisionEngineService(decisionEngine)
 
 	// Inject services into the controller
-	loanController := controllers.NewLoanController(accountingServices, decisionEngine)
+	loanController := controllers.NewLoanController(accountingServices, decisionEngineService)
 
 	// Set up the Gin router
 	router := gin.Default()

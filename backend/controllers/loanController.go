@@ -13,8 +13,8 @@ import (
 )
 
 type LoanController struct {
-	AccountingServices map[string]*services.AccountingService
-	DecisionEngine     *decisionEngine.DecisionEngine
+	AccountingServices    map[string]*services.AccountingService
+	DecisionEngineService *services.DecisionEngineService
 }
 
 type LoanApplication struct {
@@ -23,10 +23,10 @@ type LoanApplication struct {
 	AccountingProvider string                 `json:"accountingProvider"`
 }
 
-func NewLoanController(accountingServices map[string]*services.AccountingService, decisionEngine *decisionEngine.DecisionEngine) *LoanController {
+func NewLoanController(accountingServices map[string]*services.AccountingService, decisionEngineService *services.DecisionEngineService) *LoanController {
 	return &LoanController{
-		AccountingServices: accountingServices,
-		DecisionEngine:     decisionEngine,
+		AccountingServices:    accountingServices,
+		DecisionEngineService: decisionEngineService,
 	}
 }
 
@@ -59,7 +59,7 @@ func (lc *LoanController) HandleLoanApplication(c *gin.Context) {
 		PreAssessment:   preAssessment,
 	}
 
-	decisionResponse, err := lc.DecisionEngine.RequestDecision(decisionRequest)
+	decisionResponse, err := lc.DecisionEngineService.RequestLoanDecision(decisionRequest)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
